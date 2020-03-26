@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="plant"
+            type="com.example.cleanarcdemo.data.Plant" />
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginStart="@dimen/size_30_dp"
+            android:id="@+id/plant_item_img"
+            android:layout_width="@dimen/size_150_dp"
+            android:layout_height="@dimen/size_150_dp"
+            imageFromUrl="@{plant.imageUrl}"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/size_30_dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/plant_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{plant.name}"
+            tools:text="Tomato" />
+    </LinearLayout>
+
+</layout>
