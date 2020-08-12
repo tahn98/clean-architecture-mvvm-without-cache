@@ -1,8 +1,9 @@
 package com.example.cleanarcdemo.service
 
 import com.example.cleanarcdemo.data.Plant
+import javax.inject.Inject
 
-class SunflowerApiService(private val apiApi: SunflowerApi) {
+class SunflowerApiService @Inject constructor(private val apiApi: SunflowerApi) {
 
     fun getAllPlants(
         onPrepared : () -> Unit,
