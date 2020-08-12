@@ -6,23 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarcdemo.data.Status
 import com.example.cleanarcdemo.databinding.FragmentPlantBinding
-import com.example.cleanarcdemo.di.Injection
 import com.example.cleanarcdemo.ui.adapter.PlantAdapter
 import com.example.cleanarcdemo.viewmodel.PlantViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlantFragment : Fragment(){
 
     private lateinit var binding : FragmentPlantBinding
     private lateinit var plantAdapter : PlantAdapter
-    private lateinit var plantViewModel : PlantViewModel
+    private val plantViewModel : PlantViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        plantViewModel = viewModel()
         plantViewModel.getAllPlant()
     }
 
@@ -53,10 +51,5 @@ class PlantFragment : Fragment(){
         plantViewModel.networkState.observe(viewLifecycleOwner, Observer {
             binding.spinner.visibility = if(it.status == Status.RUNNING) View.VISIBLE else View.GONE
         })
-    }
-
-    private fun viewModel() : PlantViewModel{
-        val viewModelFactory = Injection.providePlantViewModelFactory()
-        return ViewModelProvider(this, viewModelFactory)[PlantViewModel::class.java]
     }
 }
